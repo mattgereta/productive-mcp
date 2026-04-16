@@ -667,16 +667,29 @@ IMPLEMENTED_TOOLS:
         DEFAULT: 10
         REQUIRED: false
   
-  - TOOL: add_task_comment
-    PURPOSE: Add comment to task
+  - TOOL: create_comment
+    PURPOSE: Add comment to a task, discussion, or page
     PARAMETERS:
       - NAME: task_id
         TYPE: string
-        REQUIRED: true
+        REQUIRED: false
+        NOTE: One of task_id, discussion_id, or page_id is required
+      - NAME: discussion_id
+        TYPE: string
+        REQUIRED: false
+      - NAME: page_id
+        TYPE: string
+        REQUIRED: false
       - NAME: comment
         TYPE: string
         MIN_LENGTH: 1
         REQUIRED: true
+      - NAME: draft
+        TYPE: boolean
+        REQUIRED: false
+      - NAME: hidden
+        TYPE: boolean
+        REQUIRED: false
 
 ENVIRONMENT_VARIABLES:
   - NAME: PRODUCTIVE_API_TOKEN
