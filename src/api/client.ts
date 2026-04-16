@@ -981,6 +981,15 @@ export class ProductiveAPIClient {
     });
   }
 
+  async removeCommentReaction(commentId: string, reaction: string): Promise<void> {
+    return this.makeVoidRequest(`comments/${commentId}/remove_reaction`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        data: { type: 'comments', attributes: { reaction } },
+      }),
+    });
+  }
+
   // ---- Todo methods ----
 
   async listTodos(params?: {

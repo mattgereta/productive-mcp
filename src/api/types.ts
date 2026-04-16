@@ -346,14 +346,13 @@ export interface ProductiveCommentCreate {
     type: 'comments';
     attributes: {
       body: string;
+      draft?: boolean;
+      hidden?: boolean;
     };
     relationships: {
-      task: {
-        data: {
-          id: string;
-          type: 'tasks';
-        };
-      };
+      task?: { data: { id: string; type: 'tasks' } };
+      discussion?: { data: { id: string; type: 'discussions' } };
+      page?: { data: { id: string; type: 'pages' } };
     };
   };
 }
@@ -679,6 +678,8 @@ export interface ProductiveCommentUpdate {
     id: string;
     attributes?: {
       body?: string;
+      draft?: boolean;
+      hidden?: boolean;
     };
   };
 }

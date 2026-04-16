@@ -13,7 +13,7 @@ import { listTaskLists, createTaskList, listTaskListsTool, createTaskListTool, g
 import { whoAmI, whoAmITool } from './tools/whoami.js';
 import { listActivities, listActivitiesTool } from './tools/activities.js';
 import { getRecentUpdates, getRecentUpdatesTool } from './tools/recent-updates.js';
-import { addTaskCommentTool, addTaskCommentDefinition, listCommentsTool, listCommentsDefinition, getCommentTool, getCommentDefinition, updateCommentTool, updateCommentDefinition, deleteCommentTool, deleteCommentDefinition, pinCommentTool, pinCommentDefinition, unpinCommentTool, unpinCommentDefinition, addCommentReactionTool, addCommentReactionDefinition } from './tools/comments.js';
+import { addTaskCommentTool, addTaskCommentDefinition, listCommentsTool, listCommentsDefinition, getCommentTool, getCommentDefinition, updateCommentTool, updateCommentDefinition, deleteCommentTool, deleteCommentDefinition, pinCommentTool, pinCommentDefinition, unpinCommentTool, unpinCommentDefinition, addCommentReactionTool, addCommentReactionDefinition, removeCommentReactionTool, removeCommentReactionDefinition } from './tools/comments.js';
 import { updateTaskStatusTool, updateTaskStatusDefinition } from './tools/task-status.js';
 import { listWorkflowStatusesTool, listWorkflowStatusesDefinition } from './tools/workflow-statuses.js';
 import { listTimeEntresTool, createTimeEntryTool, listServicesTool, getProjectServicesTool, listProjectDealsTool, listDealServicesTool, listTimeEntriesDefinition, createTimeEntryDefinition, listServicesDefinition, getProjectServicesDefinition, listProjectDealsDefinition, listDealServicesDefinition } from './tools/time-entries.js';
@@ -106,6 +106,7 @@ export async function createServer() {
       pinCommentDefinition,
       unpinCommentDefinition,
       addCommentReactionDefinition,
+      removeCommentReactionDefinition,
       // Todos
       listTodosDefinition,
       getTodoDefinition,
@@ -168,7 +169,7 @@ export async function createServer() {
       case 'update_task_details':
         return await updateTaskDetailsTool(apiClient, args);
         
-      case 'add_task_comment':
+      case 'create_comment':
         return await addTaskCommentTool(apiClient, args);
         
       case 'update_task_status':
@@ -281,6 +282,8 @@ export async function createServer() {
         return await unpinCommentTool(apiClient, args);
       case 'add_comment_reaction':
         return await addCommentReactionTool(apiClient, args);
+      case 'remove_comment_reaction':
+        return await removeCommentReactionTool(apiClient, args);
 
       // Todos
       case 'list_todos':
