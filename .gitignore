@@ -37,3 +37,7 @@ coverage/
 # Temporary files
 tmp/
 temp/
+
+# Personal folders
+matt/
+steph/
